@@ -17,12 +17,9 @@ type Value struct{}
 
 func TestRouteTree_Get(t *testing.T) {
 	var tree = &Tree[*Value]{}
-	tree.Set("/api/qaq/:id", &Value{})
-	tree.Set("/api/qaq/:id/qwq", &Value{})
-	tree.Set("/api/qaq/:id/qwq/:name", &Value{})
-	tree.Set("/api/asterisk/*path", &Value{})
 
 	testGetHandler := func(path string) {
+		tree.Set(path, &Value{})
 		handler, vpath := tree.Get(path)
 		if handler == nil {
 			t.Fatalf("handler must not be nil, path: %s", path)
@@ -32,6 +29,8 @@ func TestRouteTree_Get(t *testing.T) {
 
 	}
 
+	testGetHandler(string([]byte{255}))
+	testGetHandler("/�/ÿ")
 	testGetHandler("/api/qaq/1")
 	testGetHandler("/api/qaq/1/qwq")
 	testGetHandler("/api/qaq/1/qwq/2")

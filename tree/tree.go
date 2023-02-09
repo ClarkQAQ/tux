@@ -10,7 +10,7 @@ const (
 
 // 路由树
 type Tree[T any] struct {
-	children [255]*Tree[T] // 子路由节点
+	children [256]*Tree[T] // 子路由节点
 	vpath    []uint8       // 注册的路由路径
 	value    T             // 路由方法 (methodTyp 类型)
 }
@@ -90,9 +90,9 @@ type ExportValue[T any] struct {
 func (t *Tree[T]) ExportTreeMethon(p string) []*ExportValue[T] {
 	m := []*ExportValue[T]{}
 
-	for i := uint8(0); i < uint8(len(t.children)); i++ {
+	for i := 0; i < 256; i++ {
 		if t.children[i] != nil {
-			part := p + string(i)
+			part := p + string(uint8(i))
 			if t.children[i].vpath != nil {
 				m = append(m, &ExportValue[T]{
 					Path:  string(t.children[i].vpath),
