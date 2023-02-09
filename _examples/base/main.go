@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"time"
-	"tux"
+
+	"github.com/ClarkQAQ/tux"
 )
 
 func main() {

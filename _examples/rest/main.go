@@ -3,7 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"tux/rest"
+
+	"github.com/ClarkQAQ/tux/rest"
 )
 
 type Services struct{}

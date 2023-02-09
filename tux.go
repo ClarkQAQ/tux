@@ -4,7 +4,8 @@ import (
 	"net"
 	"net/http"
 	"sync"
-	"tux/tree"
+
+	"github.com/ClarkQAQ/tux/tree"
 )
 
 type Tux struct {
